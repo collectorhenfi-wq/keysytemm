@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>System Hendar - Ultimate Premium</title>
+
+<style>
+
+body {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  margin:0;
+
+  min-height:100vh;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:flex-start;
+
+  color:#fff;
+
+  padding-top:40px;
+
+  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+
+  position: relative;
+
+  overflow:hidden;
+
+}
+
+body::after {
+
+  content:'';
+
+  position:absolute;
+
+  top:0; left:0;
+
+  width:100%; height:100%;
+
+  background: rgba(0,0,0,0.4);
+
+  backdrop-filter: blur(2px);
+
+  z-index:0;
+
+}
+
+.light-follow {
+
+  position:absolute;
+
+  top:0; left:0;
+
+  width:180px;
+
+  height:180px;
+
+  border-radius:50%;
+
+  pointer-events:none;
+
+  background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 80%);
+
+  transform:translate(-50%, -50%);
+
+  z-index:1;
+
+  transition: transform 0.1s ease-out;
+
+}
+
+.profile {
+
+  position: relative;
+
+  text-align: center;
+
+  margin-bottom:50px;
+
+  padding:20px;
+
+  border-radius:15px;
+
+  z-index:2;
+
+}
+
+.profile img {
+
+  width:120px;
+
+  height:120px;
+
+  border-radius:50%;
+
+  border:3px solid gold;
+
+  margin-bottom:10px;
+
+  box-shadow: 0 0 20px gold;
+
+  animation: profileBounce 1s ease;
+
+}
+
+.profile h1 {
+
+  margin:0;
+
+  font-size:28px;
+
+  color:#ffd700;
+
+  text-shadow:0 0 15px #ffd700;
+
+}
+
+.profile p {
+
+  margin:5px 0 0;
+
+  font-size:20px;
+
+  animation: fadeIn 1s ease;
+
+}
+
+.buttons {
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:15px;
+
+  width:320px;
+
+  z-index:2;
+
+  position:relative;
+
+}
+
+button {
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding:16px;
+
+  font-size:17px;
+
+  border:none;
+
+  border-radius:15px;
+
+  cursor:pointer;
+
+  font-weight:bold;
+
+  box-shadow:0 6px 15px rgba(0,0,0,0.4);
+
+  opacity:0;
+
+  background: linear-gradient(135deg,#ff7e5f,#feb47b);
+
+  color:#fff;
+
+  transition: all 0.4s ease, box-shadow 0.4s ease;
+
+}
+
+button:disabled {
+
+  background:#555;
+
+  cursor:not-allowed;
+
+  box-shadow:none;
+
+  animation:none;
+
+}
+
+button:hover:not(:disabled) {
+
+  animation: hoverBounce 0.7s infinite alternate;
+
+  box-shadow:0 12px 25px rgba(255,255,255,0.7);
+
+  background: linear-gradient(135deg,#feb47b,#ff7e5f);
+
+}
+
+@keyframes hoverBounce {
+
+  0% { transform: translateY(0) scale(1.03);}
+
+  100% { transform: translateY(-6px) scale(1.05);}
+
+}
+
+#unlockBtn {
+
+  display:none;
+
+  margin-top:20px;
+
+  background: linear-gradient(135deg,#00c6ff,#0072ff);
+
+  font-size:20px;
+
+  padding:16px 25px;
+
+  border-radius:20px;
+
+  box-shadow:0 8px 25px rgba(0,0,0,0.5);
+
+  color:#fff;
+
+  font-weight:bold;
+
+  position: relative;
+
+  z-index: 9999;
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+}
+
+#unlockBtn:hover {
+
+  transform: scale(1.08);
+
+  animation: hoverBounce 0.7s infinite alternate;
+
+}
+
+@keyframes fadeIn {from{opacity:0; transform:translateY(-20px);} to{opacity:1; transform:translateY(0);}}
+
+@keyframes profileBounce {0%{transform:scale(0);} 60%{transform:scale(1.2);} 100%{transform:scale(1);}}
+
+.particle {
+
+  position:absolute;
+
+  background: rgba(255,255,255,0.6);
+
+  border-radius:50%;
+
+  pointer-events:none;
+
+  z-index:0;
+
+  animation: particleMove linear infinite;
+
+}
+
+@keyframes particleMove {
+
+  0% {transform: translateY(0);}
+
+  100% {transform: translateY(-100vh);}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="light-follow"></div>
+
+<div class="profile">
+
+  <img src="https://youtube.com/@hendarscript?si=6HoLa_hLmDzyxOIw" alt="Hendar Profile">
+
+  <h1>SYSTEM HENDAR</h1>
+
+  <p>👑</p>
+
+</div>
+
+<div class="buttons">
+
+  <button id="subscribeBtn">Subscribe</button>
+
+  <button id="likeBtn" disabled>Like</button>
+
+  <button id="watchBtn" disabled>Watch 30 seconds</button>
+
+  <button id="commandBtn" disabled>Type Thanks You</button>
+
+</div>
+
+<button id="unlockBtn">UNLOCK</button>
+
+<audio id="clickSound" src="https://freesound.org/data/previews/256/256113_3263906-lq.mp3"></audio>
+
+<audio id="unlockSound" src="https://freesound.org/data/previews/316/316847_4939433-lq.mp3"></audio>
+
+<audio id="tickSound" src="https://freesound.org/data/previews/337/337049_3248244-lq.mp3"></audio>
+
+<audio id="beachSound" src="https://freesound.org/data/previews/337/337051_3248244-lq.mp3" loop autoplay></audio>
+
+<script>
+
+const subscribeBtn=document.getElementById('subscribeBtn');
+
+const likeBtn=document.getElementById('likeBtn');
+
+const watchBtn=document.getElementById('watchBtn');
+
+const commandBtn=document.getElementById('commandBtn');
+
+const unlockBtn=document.getElementById('unlockBtn');
+
+const clickSound=document.getElementById('clickSound');
+
+const unlockSound=document.getElementById('unlockSound');
+
+const tickSound=document.getElementById('tickSound');
+
+const beachSound=document.getElementById('beachSound');
+
+const lightFollow=document.querySelector('.light-follow');
+
+beachSound.volume=0.2;
+
+// Tombol muncul bertahap
+
+const buttons=[subscribeBtn,likeBtn,watchBtn,commandBtn];
+
+buttons.forEach((btn,index)=>setTimeout(()=>{btn.style.opacity=1;},index*400));
+
+const youtubeLink="https://youtu.be/kZ8P1sQwcjw?si=3xqD7oZ8BnLyvlJr";
+
+// Subscribe
+
+subscribeBtn.addEventListener('click',()=>{
+
+  clickSound.play();
+
+  window.open(youtubeLink,"_blank");
+
+  setTimeout(()=>{
+
+    subscribeBtn.disabled=true;
+
+    subscribeBtn.textContent="Subscribe ✅";
+
+    likeBtn.disabled=false;
+
+  },2000);
+
+});
+
+// Like
+
+likeBtn.addEventListener('click',()=>{
+
+  clickSound.play();
+
+  window.open(youtubeLink,"_blank");
+
+  setTimeout(()=>{
+
+    likeBtn.disabled=true;
+
+    likeBtn.textContent="Like ✅";
+
+    watchBtn.disabled=false;
+
+  },2000);
+
+});
+
+// Watch 30 seconds
+
+watchBtn.addEventListener('click', () => {
+
+  clickSound.play();
+
+  window.open(youtubeLink, "_blank");
+
+  watchBtn.disabled = true;
+
+  let countdown = 30;
+
+  watchBtn.textContent = `Watch 30 seconds (${countdown})`;
+
+  const interval = setInterval(() => {
+
+    countdown--;
+
+    tickSound.currentTime=0;
+
+    tickSound.play();
+
+    watchBtn.textContent = `Watch 30 seconds (${countdown})`;
+
+    if (countdown <= 0) {
+
+      clearInterval(interval);
+
+      watchBtn.textContent = "Watch 30 seconds ✅";
+
+      commandBtn.disabled = false;
+
+    }
+
+  }, 1000);
+
+});
+
+// Command
+
+commandBtn.addEventListener('click',()=>{
+
+  clickSound.play();
+
+  window.open(youtubeLink,"_blank");
+
+  setTimeout(()=>{
+
+    commandBtn.disabled=true;
+
+    commandBtn.textContent="Type Thanks You ✅";
+
+    unlockBtn.style.display="block";  
+
+    unlockSound.play();
+
+    setTimeout(()=>{unlockBtn.style.transition="opacity 1s"; unlockBtn.style.opacity=1;},100);
+
+  },2000);
+
+});
+
+// UNLOCK
+
+unlockBtn.addEventListener('click',()=>{
+
+  window.open("https://raw.githubusercontent.com/collectorhenfi-wq/Hendarscriptt/refs/heads/main/keySystem","_blank");
+
+  unlockSound.play();
+
+});
+
+// Partikel pasir
+
+for(let i=0;i<60;i++){
+
+  const p=document.createElement('div');
+
+  p.className='particle';
+
+  const size=Math.random()*5+2+'px';
+
+  p.style.width=size;
+
+  p.style.height=size;
+
+  p.style.left=Math.random()*100+'vw';
+
+  p.style.top=Math.random()*100+'vh';
+
+  p.style.animationDuration=(5+Math.random()*5)+'s';
+
+  p.style.opacity=Math.random();
+
+  document.body.appendChild(p);
+
+}
+
+// Mouse follow
+
+document.addEventListener('mousemove',(e)=>{
+
+  lightFollow.style.transform=`translate(${e.clientX}px,${e.clientY}px)`;
+
+});
+
+</script>
+
+</body>
+
+</html>
